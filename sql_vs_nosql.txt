@@ -1,8 +1,38 @@
-This is the txt file for sql vs no sql
+You are asked to write up to 500 words to compare SQL and NoSQL databases, especially in connection
+with the storage and processing of high-frequency finance data. 
+
+Instructions
 
 - NoSQL preferred for large data
 - can focus on few key differences to stay within 500 words
 - Can also use a table (but must stay in limit)
 - assessed on contents, clarity and explanations
+- answer the question exactly as asked
+- Talk about ACID properties of databases
+- Why NoSQL is better for big data
+
+Outline
+
+SQL (Structured query language)
+
+- Relational data
+- SQL perform well for conplex queries and systems needing data consistency 
+- Vertical scalability (so struggles for large data)
+- Table based (strictly define schema) - good for structured, relational data eg. inventory management
+- Must organise + structure data before starting SQL database
+- Prioritises ACID properties (atomicity - all transactions must succeed or fail entirely, consistency - rules against corruption at any step, isolation - transactions cannot afffect one another, durability - transactions are final)
+
+NoSQL (Not only SQL)
+
+- Horizontal scalability ie. can add servers/nodes so can handle more data and high speed workloads
+
+- Don't need to preprocess data as much
+- Good for real-time data processing
+- Frequent changes in data structures
+- JSON
+- column oriented, key value stores, document stores - large unstructured data or logs, graph databases
+- Prioritises CAP theory (consistency - each request each gets most recent result or an error)
+
+
 
 
