@@ -1,1 +1,8 @@
 This is the txt file for sql vs no sql
+
+- NoSQL preferred for large data
+- can focus on few key differences to stay within 500 words
+- Can also use a table (but must stay in limit)
+- assessed on contents, clarity and explanations
+
+
