@@ -1,0 +1,120 @@
+You are asked to write up to 500 words to compare SQL and NoSQL databases, especially in connection
+with the storage and processing of high-frequency finance data. 
+
+Instructions
+
+- NoSQL preferred for large data
+- can focus on few key differences to stay within 500 words
+- Can also use a table (but must stay in limit)
+- assessed on contents, clarity and explanations
+- answer the question exactly as asked
+- Talk about ACID properties of databases
+- Why NoSQL is better for big data
+
+Outline
+
+SQL (Structured query language) eg. MySQL 
+
+- Relational data
+- SQL perform well for conplex queries and systems needing data consistency 
+- Vertical scalability (so struggles for large data)
+- Table based (strictly define schema) - good for structured, relational data eg. inventory management
+- Must organise + structure data before starting SQL database
+- Prioritises ACID properties (atomicity - all transactions must succeed or fail entirely, consistency - rules against corruption at any step, isolation - transactions cannot afffect one another, durability - transactions are final)
+
+NoSQL (Not only SQL) eg. MongoDB
+
+- Horizontal scalability ie. can add servers/nodes so can handle more data and high speed workloads eg.  Lots of volume from different exchanges, no single point failure, no storage or speed limits
+- Don't need to preprocess data as much
+- Good for large amounts of every changing data eg HFF data, order books etc
+- Can store JSON documents with many different formats
+- column oriented, key value stores, document stores - large unstructured data or logs, graph databases
+- Prioritises CAP theory (consistency - each request each gets most recent result or an error, availability - every request has non-error result, partition tolerance - any delays/losses between nodes dont interrupt system operation)
+- Speed is super importand for HFF data, trades are made at the order of microseconds, NoSQL databases are in-memory so very fast
+- HFF may require alternative data so pulling data from articles, sentiment analysis, tweets is better here in this unstructured non relational approach
+
+Intro
+
+High-frequency finance (HFF) relies on vast amounts of rapidly changing data, 
+requiring databases designed for speed and scalability. SQL databases offer 
+structured, relational storage, ensuring consistency but struggling
+with high-speed processing. NoSQL databases, with flexible schemas 
+and distributed architecture, excel at handling voluminous, 
+low-latency financial data. We will compare their suitability
+for HFF data below.
+
+Section 1
+
+SQL databases enforce a rigid relational structure, making them ideal 
+for traditional financial records but less suited for irregularly spaced,
+high-frequency tick data. The limit order book (LOB), central 
+to HFF, requires dynamic updates to limit orders, market orders, and 
+bid-ask spreads, which SQL’s predefined schema may struggle to accommodate
+efficiently.
+
+NoSQL databases, by contrast, can handle unstructured tick data, order book
+reconstructions, and evolving market conditions with schema-flexible 
+structures. NoSQL’s document-based and key-value models efficiently
+store BBO sizes, trade directions, and iceberg order 
+data, useful for low-latency execution algorithms (e.g. TWAP, VWAP,
+percentage of volume) and real-time market microstructure analysis. 
+NoSQL’s flexible schema enables efficient storage of granular level-2 
+tick data, reducing the need for preprocessing which improves execution 
+latency.
+
+Section 2
+
+SQL databases prioritise data integrity by following the ACID properties:
+
+- Atomicity: Transactions fully complete or fail (e.g. order execution must be all-or-nothing).
+- Consistency: The database must be consistent before and after the transaction
+- Isolation: Transactions don’t interfere with one another (e.g. concurrent trades are processed separately).
+- Durability: Confirmed transactions occur even after system failures
+
+NoSQL databases instead follow CAP theorem, prioritising:
+
+- Consistency: All nodes return the latest confirmed data to prevent discrepancies (e.g. Trade execution prices remain identical across all market data feeds).
+- Availability: Every request gets a response, even if some nodes are down, though data may be slightly outdated (e.g. A trading system still executes orders during partial exchange outages).
+- Partition Tolerance: The system remains operational despite network failures between nodes. (e.g. A fragmented network still processes limit order book updates across available servers).
+
+ACID ensures banking-grade transaction security but can be slow for 
+real-time bid-ask updates, trade execution, and order book modifications.
+NoSQL’s availability-first model enables low-latency trade execution 
+in microseconds, critical for high frequency finance and execution strategies.
+
+Section 3
+
+SQL databases scale vertically, requiring more CPU and RAM to handle 
+increased workloads. This approach is costly and limited, making SQL 
+less efficient for HFF, where large numbers of trades per second require
+fast processing. Furthermore, SQL queries depend on disk-based storage, 
+introducing latency that is impractical for low-latency trade execution.
+
+NoSQL databases scale horizontally, distributing data across multiple 
+servers, ensuring high availability and fault tolerance. This 
+architecture is important for order book updates, price discovery 
+mechanisms, and execution algorithms (e.g. TWAP, VWAP, market impact 
+models), which may require sub-millisecond response times. Additionally, 
+in-memory NoSQL databases reduce disk-based bottlenecks (in order 
+routing, trade matching, and limit order book udates).
+
+Conclusion
+
+For high-frequency finance, where speed, scalability, and 
+flexibility are crucial, NoSQL databases are preferable to SQL. 
+Their schema-less, distributed design allows real-time trade execution,
+order book updates, and large-scale market data processing quickly. However, 
+SQL remains important for structured financial records where data
+consistency and regulatory compliance take precedence. NoSQL is better
+suited for storing and processing HFF data due to its low-latency,
+high-speed architecture, while SQL is preferable for static financial data 
+requiring strong integrity.
+
+
+
+Sources:
+https://www.geeksforgeeks.org/the-cap-theorem-in-dbms/
+https://www.ibm.com/think/topics/sql-vs-nosql#:~:text=SQL%20and%20NoSQL%20differ%20in,row%20transactions%20or%20unstructured%20data.
+https://www.linkedin.com/pulse/sql-vs-nosql-showdown-which-database-should-you-use-xqyuf/
+HFF Lecture notes
+https://www.geeksforgeeks.org/difference-between-sql-and-nosql/
